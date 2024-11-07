@@ -1,0 +1,87 @@
+<!-- app.component.html -->
+
+<div class="app-container">
+    <!-- Encabezado con el logo -->
+    <header class="app-header">
+      <img src="assets/logo.png" alt="Logo" class="logo" />
+      <h1 class="title">Dashboard</h1>
+    </header>
+  
+    <!-- Contenedor principal con menú lateral -->
+    <div class="main-content">
+      <!-- Menú lateral -->
+      <aside class="sidebar">
+        <ul>
+          <li><a routerLink="/clients">Clients</a></li>
+          <li><a routerLink="/clients/look-history">Clients Look History</a></li>
+          <li><a routerLink="/emergency-pin-configuration">Emergency PIN Configuration</a></li>
+          <li><a routerLink="/emergency-pin-history">Emergency PIN History</a></li>
+        </ul>
+      </aside>
+  
+      <!-- Contenido principal -->
+      <div class="content-area">
+        <!-- Botones: Crear y Exportar -->
+        <div class="actions">
+          <button class="action-button add-btn" (click)="toggleModal()">
+            <i class="fa fa-plus"></i> New
+          </button>
+          <button class="action-button export-btn">
+            <i class="fa fa-folder"></i> Export
+          </button>
+        </div>
+  
+        <!-- Búsqueda -->
+        <div class="search-container">
+          <input type="text" placeholder="Search clients..." class="search-input" />
+          <button class="search-btn">Search</button>
+          <button class="advanced-search-btn">Advanced Search</button>
+        </div>
+  
+        <!-- Tabla de Clientes -->
+        <div class="table-container">
+          <table class="client-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John Doe</td>
+                <td>example&#64;domain.com</td>
+                <td>(123) 456-7890</td>
+                <td>Active</td>
+                <td><button>Edit</button></td>
+              </tr>
+              <!-- Más filas de datos de clientes -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Modal para agregar un cliente -->
+    <div class="modal" *ngIf="isModalOpen">
+      <div class="modal-content">
+        <span class="close" (click)="toggleModal()">×</span>
+        <h2>Nuevo Cliente</h2>
+        <form (ngSubmit)="saveClient()">
+          <div class="form-group">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" [(ngModel)]="newClient.name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" [(ngModel)]="newClient.email" name="email" required />
+          </div>
+          <button type="submit" [disabled]="!newClient.name || !newClient.email" class="submit-btn">Guardar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

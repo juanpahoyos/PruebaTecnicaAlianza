@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="header">
+      <h1>Listado de Clientes</h1>
+      <div class="buttons">
+        <button (click)="navigateToCreate()">Crear Cliente</button>
+        <button (click)="search()">Buscar</button>
+        <!-- Opcionales -->
+        <button (click)="advancedSearch()">Advanced Search</button>
+        <button (click)="exportCsv()">Exportar a CSV</button>
+      </div>
+    </div>
+    <table class="client-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+          <th>Shared Key</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Aquí agregarías las filas de clientes simuladas para el diseño -->
+        <tr *ngFor="let client of clients">
+          <td>{{ client.name }}</td>
+          <td>{{ client.email }}</td>
+          <td>{{ client.phone }}</td>
+          <td>{{ client.sharedKey }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
